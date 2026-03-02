@@ -1,1 +1,174 @@
-// Specific CSS for your home-page
+// Home page - Hero section
+.home-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(100vh - 80px);
+  padding: 40px 80px;
+  background: $background;
+  gap: 60px;
+}
+
+// Left column - Text content
+.home-hero-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.home-hero-title {
+  font-family: $headers-font;
+  font-size: 4rem;
+  font-weight: 700;
+  color: $gray;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.home-hero-title-accent {
+  display: block;
+  color: $primary;
+}
+
+.home-hero-description {
+  font-family: $body-font;
+  font-size: 1.1rem;
+  color: rgba($gray, 0.6);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.home-hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary-custom {
+  display: inline-block;
+  background: $primary;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: $body-font;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background: darken($primary, 8%);
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-outline-custom {
+  display: inline-block;
+  background: transparent;
+  color: $gray;
+  padding: 14px 32px;
+  border: 2px solid rgba($gray, 0.2);
+  border-radius: 50px;
+  font-family: $body-font;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+    transform: translateY(-2px);
+  }
+}
+
+// Right column - SVG animation
+.home-hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sommelier-logo {
+  width: 280px;
+  height: auto;
+}
+
+// === SVG Logo Animation ===
+// Initial state: red circle + black rim overlapping at the same center
+// Then elements separate to form the wine glass shape
+
+// Red circle (wine) - always visible, no animation needed
+.logo-wine {
+  opacity: 1;
+}
+
+// Rim circle - starts at the red circle's center (translateY +121.93),
+// then slides up to its final position
+// (298.10 - 176.17 = 121.93 SVG units)
+.logo-rim {
+  transform: translateY(121.93px);
+  animation: rim-slide-up 2s cubic-bezier(0.25, 0.1, 0.25, 1) 1.5s forwards;
+}
+
+// Stem line - hidden initially, draws from top to bottom
+// Line length = 678.29 - 470.28 = 208.01
+.logo-stem {
+  stroke-dasharray: 208.01;
+  stroke-dashoffset: 208.01;
+  animation: draw-stem 2s cubic-bezier(0.25, 0.1, 0.25, 1) 3.5s forwards;
+}
+
+// Base circle - hidden initially, slides down from red circle center
+// and fades in (298.10 - 678.29 = -380.19)
+.logo-base {
+  opacity: 0;
+  transform: translateY(-380.19px);
+  animation: base-slide-down 2s cubic-bezier(0.25, 0.1, 0.25, 1) 3.5s forwards;
+}
+
+// Keyframes
+@keyframes rim-slide-up {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw-stem {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes base-slide-down {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .home-hero {
+    flex-direction: column;
+    padding: 40px 24px;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .home-hero-content {
+    max-width: 100%;
+  }
+
+  .home-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .home-hero-actions {
+    justify-content: center;
+  }
+
+  .sommelier-logo {
+    width: 200px;
+  }
+}
