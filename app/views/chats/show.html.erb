@@ -1,10 +1,12 @@
-<h1>Wine Assistant</h1>
-
-<div class="chat-box">
-  <% @wines.each do |wine| %>
-    <div class="chat-message">
-      <strong><%= wine.name %></strong>
-      <p><%= wine.description %></p>
+<div class="chat-messages">
+  <% @chat.messages.order(:created_at).each do |message| %>
+    <div class="chat-message chat-message--<%= message.role %>">
+      <%= message.content %>
     </div>
   <% end %>
 </div>
+
+<%= simple_form_for [@chat, @message], url: chat_messages_path(@chat) do |f| %>
+  <%= f.input :content, label: false, placeholder: "Ask your sommelier..." %>
+  <%= f.button :submit, "Send", class: "btn btn-primary" %>
+<% end %>

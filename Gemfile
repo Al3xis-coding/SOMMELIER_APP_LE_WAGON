@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-
+gem "ruby_llm"
 gem "devise"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.2"
