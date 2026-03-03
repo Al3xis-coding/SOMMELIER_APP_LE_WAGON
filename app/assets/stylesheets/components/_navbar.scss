@@ -1,6 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  padding: 12px 48px;
+  box-shadow: 0 1px 0 rgba($primary, 0.08);
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +11,62 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-lewagon .navbar-nav {
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar-lewagon .nav-link {
+  font-family: $body-font;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgba($gray, 0.55);
+  padding: 6px 16px;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: $primary;
+    background: rgba($primary, 0.06);
+  }
+}
+
+.navbar-lewagon .avatar {
+  width: 50px;
+  height:50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+
+.navbar-lewagon .dropdown-menu {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba($gray, 0.12);
+  padding: 8px;
+  min-width: 160px;
+  margin-top: 8px;
+}
+
+.navbar-lewagon .dropdown-item {
+  font-family: $body-font;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba($gray, 0.7);
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover,
+  &:focus {
+    background: rgba($primary, 0.08);
+    color: $primary;
+  }
 }
