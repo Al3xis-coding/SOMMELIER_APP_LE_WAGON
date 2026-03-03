@@ -2,7 +2,7 @@
 .home-hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: calc(100vh - 80px);
   padding: 40px 80px;
   background: $background;
@@ -84,6 +84,7 @@
 // Right column - SVG animation
 .home-hero-visual {
   flex: 1;
+  max-width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,6 +168,7 @@
   .home-hero-actions {
     justify-content: center;
   }
+
 
   .sommelier-logo {
     width: 200px;
