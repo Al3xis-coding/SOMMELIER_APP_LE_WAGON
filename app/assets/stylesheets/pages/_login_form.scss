@@ -1,0 +1,25 @@
+
+.login_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width : 100%;
+  font-weight: 18px;
+  background-image: url("images/Logo.png");
+
+}
+
+.login_fields {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color:  #EAE0E0;
+  color : black
+}
+
+.log_in_links a {
+  color : brown;
+  text-decoration: none;
+  margin-top: 3px;
+}
