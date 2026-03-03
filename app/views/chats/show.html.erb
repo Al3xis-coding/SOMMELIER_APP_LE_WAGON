@@ -1,0 +1,10 @@
+<h1>Wine Assistant</h1>
+
+<div class="chat-box">
+  <% @wines.each do |wine| %>
+    <div class="chat-message">
+      <strong><%= wine.name %></strong>
+      <p><%= wine.description %></p>
+    </div>
+  <% end %>
+</div>
