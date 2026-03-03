@@ -15,7 +15,7 @@
             <%= link_to "Wine List", wines_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sommelier", "#", class: "nav-link" %>
+            <%= link_to "Sommelier", chats_path, data: { turbo_method: :post }, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
