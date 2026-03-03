@@ -1,7 +1,8 @@
 class WinesController < ApplicationController
   def show
     @wine = Wine.find(params[:id])
+  end
   def index
-    @wines = Wine.all
+    @wines = current_user.wines
   end
 end
