@@ -15,6 +15,15 @@ class Wine < ApplicationRecord
 
   belongs_to :user
   belongs_to :chat
+<<<<<<< HEAD
+<<<<<<< HEAD
+  validates :color, presence: true, inclusion: { in: %w[red white rosé yellow] }
+=======
   validates :color, presence: true, inclusion: { in: COLORS }
   validates :categories, presence: true, inclusion: { in: CATEGORIES }
+>>>>>>> fec0c29dc16eb7fea9dd44dbe7a52b10b439fc3d
+=======
+  validates :color, presence: true, inclusion: { in: COLORS }
+  validates :categories, presence: true, inclusion: { in: CATEGORIES }
+>>>>>>> 532923e2581e7c5332e383031614f456d49aa873
 end
