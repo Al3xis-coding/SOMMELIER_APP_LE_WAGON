@@ -1,6 +1,6 @@
 class Wine < ApplicationRecord
   CATEGORIES = %w[
-    fish shellfish poultry pork beef lamb game charcuterie
+    fish shellfish poultry pork bbq beef lamb game charcuterie
     soft_cheese aged_cheese blue_cheese
     pasta pizza vegetarian spicy_food asian_cuisine
     dessert chocolate fruit_dessert
