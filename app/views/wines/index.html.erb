@@ -3,22 +3,22 @@
 
   <div class="wines-grid">
     <% @wines.each do |wine| %>
-      <div class="wine-card">
+      <%= link_to wine_path(wine), class: "wine-card" do %>
+        <% if wine.name.present? %>
+          <h3 class="wine-card__name"><%= wine.name %></h3>
+        <% end %>
         <div class="wine-card__tags">
           <% if wine.color.present? %>
             <span class="wine-tag wine-tag--<%= wine.color %>"><%= wine.color.capitalize %></span>
           <% end %>
-          <% if wine.categories.present? %>
-            <span class="wine-tag wine-tag--category"><%= wine.categories %></span>
+          <% wine.categories.each do |category| %>
+            <span class="wine-tag wine-tag--category"><%= category.gsub('_', ' ').capitalize %></span>
           <% end %>
           <% if wine.origin.present? %>
             <span class="wine-tag wine-tag--origin"><%= wine.origin %></span>
           <% end %>
         </div>
-        <% if wine.description.present? %>
-          <p class="wine-card__description"><%= wine.description %></p>
-        <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
