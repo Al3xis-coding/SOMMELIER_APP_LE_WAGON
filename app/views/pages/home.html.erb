@@ -1,2 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-hero">
+  <div class="home-hero-content">
+    <h1 class="home-hero-title">
+      SommelIA
+      <span class="home-hero-title-accent">AI</span>
+    </h1>
+    <p class="home-hero-description">
+      Discover the perfect wine for every occasion. Let our AI sommelier guide you through a world of flavors, aromas, and pairings.
+    </p>
+    <div class="home-hero-actions">
+      <button> <span> <%= link_to "Get Started", "#" %></span>
+</button>
+    </div>
+  </div>
+
+  <div class="home-hero-visual">
+    <svg class="sommelier-logo" viewBox="0 0 352.35 854.47" xmlns="http://www.w3.org/2000/svg">
+      <circle class="logo-base" cx="176.17" cy="678.29" r="172.17" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="8"/>
+      <line class="logo-stem" x1="176.17" y1="470.28" x2="176.17" y2="678.29" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="8"/>
+      <circle class="logo-wine" cx="176.17" cy="298.10" r="172.17" fill="#780000"/>
+      <circle class="logo-rim" cx="176.17" cy="176.17" r="172.17" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="8"/>
+    </svg>
+  </div>
+</div>
