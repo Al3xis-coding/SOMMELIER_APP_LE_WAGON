@@ -1,26 +1,57 @@
-<div class="card mb-3 shadow-sm">
-  <div class="card-body">
-    <div class="d-flex align-items-center mb-2">
-      <span class="badge rounded-pill
-        <%= case @wine.color
-            when 'red' then 'bg-danger'
-            when 'white' then 'bg-warning text-dark'
-            when 'rosé' then 'bg-pink'
-            when 'yellow' then 'bg-warning'
-            end %> me-2">
-        <%= @wine.color.capitalize %>
-      </span>
+<div class="wine-show">
+  <%
+    bottle_image = case @wine.color
+                   when "red" then "bottle-red.png"
+                   when "rose" then "bottle-pink.png"
+                   when "white" then "bottle-white.png"
+                   else "bottle-red.png"
+                   end
+
+    circle_color = case @wine.color
+                   when "red" then "#E8A0A0"
+                   when "rose" then "#F4A7B9"
+                   when "white" then "#F5E6A3"
+                   else "#E8A0A0"
+                   end
+  %>
+
+  <!-- Bottle spanning both sections -->
+  <div class="wine-show__bottle">
+    <div class="wine-show__circle-top" style="background-color: <%= circle_color %>;"></div>
+    <div class="wine-show__circle-bottom" style="background-color: <%= circle_color %>;"></div>
+    <%= image_tag bottle_image, class: "wine-show__bottle-img", alt: @wine.name %>
+  </div>
+
+  <!-- Top section -->
+  <div class="wine-show__top">
+    <div class="wine-show__spacer"></div>
+    <div class="wine-show__info">
+      <h1 class="wine-show__name"><%= @wine.name %></h1>
       <% if @wine.origin.present? %>
-        <small class="text-muted"><%= @wine.origin %></small>
+        <p class="wine-show__origin"><%= @wine.origin %></p>
+      <% end %>
+
+      <% if @wine.description.present? %>
+        <div class="wine-show__description">
+          <p><%= @wine.description %></p>
+        </div>
       <% end %>
     </div>
+  </div>
 
-    <% if @wine.categories.present? %>
-      <h5 class="card-title"><%= @wine.categories %></h5>
-    <% end %>
+  <!-- Bottom section -->
+  <div class="wine-show__bottom">
+    <div class="wine-show__spacer"></div>
+    <div class="wine-show__details">
+      <% if @wine.taste.present? %>
+        <h2 class="wine-show__section-title">Caractéristiques</h2>
+        <p class="wine-show__section-text"><%= @wine.taste %></p>
+      <% end %>
 
-    <% if @wine.description.present? %>
-      <p class="card-text"><%= @wine.description %></p>
-    <% end %>
+      <% if @wine.categories.present? %>
+        <h2 class="wine-show__section-title">Gastronomie</h2>
+        <p class="wine-show__section-text"><%= @wine.categories.map(&:humanize).join(", ") %></p>
+      <% end %>
+    </div>
   </div>
 </div>

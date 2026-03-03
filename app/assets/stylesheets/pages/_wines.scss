@@ -94,3 +94,170 @@ a.wine-card {
     border: 1px solid darken($light-gray, 10%);
   }
 }
+
+// === Wine Show Page ===
+.wine-show {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  // Bottle container - positioned absolutely, centered vertically across both sections
+  &__bottle {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &__bottle-img {
+    height: 700px;
+    object-fit: contain;
+    position: relative;
+    z-index: 3;
+  }
+
+  // Circle in the top section (behind the bottle top half)
+  &__circle-top {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -85%);
+    z-index: 1;
+  }
+
+  // Circle in the bottom section (behind the bottle bottom half)
+  &__circle-bottom {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 1;
+  }
+
+  // Sections
+  &__top {
+    display: flex;
+    align-items: center;
+    background: $background;
+    min-height: 50vh;
+    padding: 60px 80px;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    background: darken($background, 5%);
+    min-height: 50vh;
+    padding: 60px 80px;
+  }
+
+  // Spacer to reserve room for the bottle on the left
+  &__spacer {
+    flex: 0 0 400px;
+  }
+
+  // Text content
+  &__info {
+    flex: 1;
+  }
+
+  &__name {
+    font-family: $headers-font;
+    font-size: 3rem;
+    font-weight: 700;
+    color: $gray;
+    margin: 0 0 4px;
+  }
+
+  &__origin {
+    font-size: 1.1rem;
+    color: rgba($gray, 0.6);
+    margin: 0 0 32px;
+  }
+
+  &__description {
+    max-width: 550px;
+
+    p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba($gray, 0.7);
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  &__details {
+    flex: 1;
+  }
+
+  &__section-title {
+    font-family: $headers-font;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $gray;
+    margin: 0 0 8px;
+  }
+
+  &__section-text {
+    font-size: 1rem;
+    color: rgba($gray, 0.6);
+    margin: 0 0 32px;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .wine-show {
+    &__bottle {
+      position: relative;
+      left: auto;
+      width: 100%;
+      height: 400px;
+      margin-bottom: -40px;
+    }
+
+    &__bottle-img {
+      height: 380px;
+    }
+
+    &__circle-top {
+      transform: translate(-50%, -50%);
+    }
+
+    &__circle-bottom {
+      display: none;
+    }
+
+    &__top,
+    &__bottom {
+      flex-direction: column;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    &__spacer {
+      display: none;
+    }
+
+    &__name {
+      font-size: 2rem;
+    }
+
+    &__description {
+      max-width: 100%;
+    }
+  }
+}
