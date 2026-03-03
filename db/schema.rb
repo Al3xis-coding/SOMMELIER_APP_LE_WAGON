@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_02_143417) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_120128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_143417) do
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
+    t.string "tastes"
     t.datetime "updated_at", null: false
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -47,12 +48,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_143417) do
   end
 
   create_table "wines", force: :cascade do |t|
-    t.string "categories"
+    t.string "categories", default: [], array: true
     t.bigint "chat_id", null: false
     t.string "color"
     t.datetime "created_at", null: false
     t.text "description"
+    t.string "name"
     t.string "origin"
+    t.string "taste"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["chat_id"], name: "index_wines_on_chat_id"
