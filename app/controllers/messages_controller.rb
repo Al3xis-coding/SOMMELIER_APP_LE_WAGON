@@ -79,7 +79,7 @@ class MessagesController < ApplicationController
 
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message })}
         format.html { render "chats/show", status: :unprocessable_entity }
       end
     end
