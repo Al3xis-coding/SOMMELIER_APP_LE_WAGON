@@ -3,20 +3,28 @@
 
   <div class="wines-grid">
     <% @wines.each do |wine| %>
+      <%
+        bottle_image = case wine.color
+                       when "red"   then "bottle-red.png"
+                       when "rose"  then "bottle-pink.png"
+                       when "white" then "bottle-white.png"
+                       else "bottle-red.png"
+                       end
+      %>
       <%= link_to wine_path(wine), class: "wine-card" do %>
-        <% if wine.name.present? %>
-          <h3 class="wine-card__name"><%= wine.name %></h3>
-        <% end %>
-        <div class="wine-card__tags">
-          <% if wine.color.present? %>
-            <span class="wine-tag wine-tag--<%= wine.color %>"><%= wine.color.capitalize %></span>
-          <% end %>
-          <% wine.categories.each do |category| %>
-            <span class="wine-tag wine-tag--category"><%= category.gsub('_', ' ').capitalize %></span>
-          <% end %>
+        <div class="wine-card__image-wrap">
+          <%= image_tag bottle_image, class: "wine-card__bottle", alt: wine.name %>
+        </div>
+        <div class="wine-card__body">
+          <h3 class="wine-card__name"><%= wine.name.presence || "Unnamed wine" %></h3>
           <% if wine.origin.present? %>
-            <span class="wine-tag wine-tag--origin"><%= wine.origin %></span>
+            <p class="wine-card__origin"><%= wine.origin %></p>
           <% end %>
+          <div class="wine-card__tags">
+            <% wine.categories.first(3).each do |cat| %>
+              <span class="wine-card__tag"><%= cat.gsub('_', ' ').capitalize %></span>
+            <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>

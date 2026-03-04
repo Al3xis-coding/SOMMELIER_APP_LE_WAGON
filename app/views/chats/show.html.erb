@@ -1,28 +1,12 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
-  <div id="messages">
-  <% @chat.messages.each do |message| %>
-    <% if message.role == "user" %>
-      <div class="d-flex justify-content-end mb-2">
-        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-          <%= raw(render_markdown(message.content)) %>
-        </div>
+      <div id="messages">
+        <%= render "messages/messages", messages: @chat.messages %>
       </div>
-    <% elsif message.role == "assistant" %>
-      <div class="d-flex justify-content-start mb-5">
-        <div class="px-3 pb-0 pt-3">
-          <%= raw(render_markdown(message.content)) %>
-        </div>
+      <div id="new_message_container">
+        <%= render "messages/form", chat: @chat, message: @message %>
       </div>
-    <% end %>
-  <% end %>
-</div>
-
-<%= simple_form_for [@chat, @message], url: chat_messages_path(@chat) do |f| %>
-  <%= f.input :content, label: false, placeholder: "Ask your sommelier..." %>
-  <%= f.button :submit, "Send", class: "btn btn-primary" %>
-<% end %>
     </div>
   </div>
 </div>

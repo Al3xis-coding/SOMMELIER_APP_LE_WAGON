@@ -1,4 +1,4 @@
-<div class="wine-show">
+<div class="wine-show wine-show--<%= @wine.color || 'red' %>">
   <%
     bottle_image = case @wine.color
                    when "red" then "bottle-red.png"
@@ -44,12 +44,12 @@
     <div class="wine-show__spacer"></div>
     <div class="wine-show__details">
       <% if @wine.taste.present? %>
-        <h2 class="wine-show__section-title">Caractéristiques</h2>
+        <h2 class="wine-show__section-title">Characteristics</h2>
         <p class="wine-show__section-text"><%= @wine.taste %></p>
       <% end %>
 
       <% if @wine.categories.present? %>
-        <h2 class="wine-show__section-title">Gastronomie</h2>
+        <h2 class="wine-show__section-title">Food Pairings</h2>
         <p class="wine-show__section-text"><%= @wine.categories.map(&:humanize).join(", ") %></p>
       <% end %>
     </div>

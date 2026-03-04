@@ -1,35 +1,79 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+<div class="profile-container">
+  <div class="profile-avatar-section reveal" data-reveal>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "avatar-form" }) do |f| %>
+      <div class="profile-avatar-wrapper">
+        <div class="profile-avatar">
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, alt: "avatar" %>
+          <% else %>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", alt: "avatar" %>
+          <% end %>
+        </div>
+        <label for="avatar-input" class="profile-edit-badge">
+          <i class="fas fa-camera"></i>
+        </label>
+        <%= f.input_field :avatar, as: :file, id: "avatar-input", class: "d-none", onchange: "this.form.requestSubmit()" %>
+      </div>
     <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <h2 class="profile-name"><%= current_user.first_name || "Firstname" %> <%= current_user.last_name || "Lastname" %></h2>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="profile-form-section reveal" data-reveal data-reveal-delay="200">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "profile-form" }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="profile-field">
+        <%= f.label :first_name, "Firstname" %>
+        <%= f.input_field :first_name, class: "profile-input", placeholder: "Firstname" %>
+      </div>
+
+      <div class="profile-field">
+        <%= f.label :last_name, "Lastname" %>
+        <%= f.input_field :last_name, class: "profile-input", placeholder: "Lastname" %>
+      </div>
+
+      <div class="profile-field">
+        <%= f.label :email, "Email" %>
+        <%= f.input_field :email, class: "profile-input", placeholder: "Email" %>
+      </div>
+
+      <div class="profile-field">
+        <%= f.label :tastes, "How would you describe your tastes?" %>
+        <%= f.text_area :tastes, class: "profile-input profile-textarea", placeholder: "Describe your tastes..." %>
+      </div>
+
+      <div class="profile-submit">
+        <%= f.button :submit, "Save changes", class: "btn-profile-save" %>
+      </div>
+    <% end %>
   </div>
+</div>
+
+<!-- Modal de validation -->
+<div class="profile-modal-overlay" id="profileModal" style="display: none;">
+  <div class="profile-modal">
+    <i class="fas fa-check-circle profile-modal-icon"></i>
+    <h3>Profil mis à jour !</h3>
+    <p>Vos informations ont bien été sauvegardées.</p>
+    <div class="profile-modal-actions">
+      <%= link_to "Page principale", root_path, class: "btn-profile-home" %>
+      <button class="btn-profile-close" id="closeModal">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<% if flash[:notice] %>
+  <script>
+    document.addEventListener("turbo:load", () => {
+      document.getElementById("profileModal").style.display = "flex";
+      document.getElementById("closeModal").addEventListener("click", () => {
+        document.getElementById("profileModal").style.display = "none";
+      });
+      document.getElementById("profileModal").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("profileModal")) {
+          document.getElementById("profileModal").style.display = "none";
+        }
+      });
+    });
+  </script>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
