@@ -7,7 +7,9 @@
       Discover the perfect wine for every occasion. Let our AI sommelier guide you through a world of flavors, aromas, and pairings.
     </p>
     <div class="home-hero-actions reveal" data-reveal data-reveal-delay="600">
-      <%= button_to "Get Started", chats_path, method: :post %>
+      <%= link_to chats_path, data: { turbo_method: :post }, class: "nav-pill-btn nav-pill-btn--cta" do %>
+        <span>Get Started</span>
+      <% end %>
     </div>
   </div>
 
