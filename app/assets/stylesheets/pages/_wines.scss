@@ -9,89 +9,89 @@
 
 .wines-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
 }
 
 a.wine-card {
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-    transition: all 0.2s ease;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
   }
 }
 
 .wine-card {
   background: white;
-  border-radius: 12px;
-  padding: 1.25rem;
+  border-radius: 16px;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba($primary, 0.1);
+  border: 1px solid rgba($primary, 0.08);
+
+  &__image-wrap {
+    background: $background;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 1.25rem 1rem 0;
+    height: 210px;
+    overflow: hidden;
+  }
+
+  &__bottle {
+    height: 190px;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__body {
+    padding: 0.875rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 
   &__name {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: $primary;
-    margin: 0 0 0.75rem;
+    color: $gray;
+    margin: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__origin {
+    font-size: 0.75rem;
+    color: rgba($gray, 0.5);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
   }
 
-  &__description {
-    font-size: 0.875rem;
-    color: #555;
-    margin: 0;
-    line-height: 1.5;
-  }
-}
-
-.wine-tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  &--red {
-    background-color: #8B1A1A;
-    color: white;
-  }
-
-  &--white {
-    background-color: #F5E6A3;
-    color: #5a4a00;
-  }
-
-  &--rosé {
-    background-color: #F4A7B9;
-    color: #7d2240;
-  }
-
-  &--yellow {
-    background-color: $yellow;
-    color: #5a4a00;
-  }
-
-  &--category {
-    background-color: $secondary;
-    color: white;
-  }
-
-  &--origin {
-    background-color: $light-gray;
-    color: $secondary;
-    border: 1px solid darken($light-gray, 10%);
+  &__tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: $light-gray;
+    color: rgba($gray, 0.6);
   }
 }
 
