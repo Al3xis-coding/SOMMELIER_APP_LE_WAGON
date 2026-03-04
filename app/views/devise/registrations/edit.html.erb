@@ -19,12 +19,17 @@
   </div>
 
   <div class="profile-form-section reveal" data-reveal data-reveal-delay="200">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "profile-form" }) do |f| %>
       <%= f.error_notification %>
 
       <div class="profile-field">
         <%= f.label :first_name, "Firstname" %>
         <%= f.input_field :first_name, class: "profile-input", placeholder: "Firstname" %>
+      </div>
+
+      <div class="profile-field">
+        <%= f.label :last_name, "Lastname" %>
+        <%= f.input_field :last_name, class: "profile-input", placeholder: "Lastname" %>
       </div>
 
       <div class="profile-field">
@@ -43,3 +48,32 @@
     <% end %>
   </div>
 </div>
+
+<!-- Modal de validation -->
+<div class="profile-modal-overlay" id="profileModal" style="display: none;">
+  <div class="profile-modal">
+    <i class="fas fa-check-circle profile-modal-icon"></i>
+    <h3>Profil mis à jour !</h3>
+    <p>Vos informations ont bien été sauvegardées.</p>
+    <div class="profile-modal-actions">
+      <%= link_to "Page principale", root_path, class: "btn-profile-home" %>
+      <button class="btn-profile-close" id="closeModal">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<% if flash[:notice] %>
+  <script>
+    document.addEventListener("turbo:load", () => {
+      document.getElementById("profileModal").style.display = "flex";
+      document.getElementById("closeModal").addEventListener("click", () => {
+        document.getElementById("profileModal").style.display = "none";
+      });
+      document.getElementById("profileModal").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("profileModal")) {
+          document.getElementById("profileModal").style.display = "none";
+        }
+      });
+    });
+  </script>
+<% end %>
