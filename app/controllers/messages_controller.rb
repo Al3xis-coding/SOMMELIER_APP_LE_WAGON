@@ -91,10 +91,10 @@ Then write the card using this structure:
 [2 sentences: specific history of this producer and region — who founded it, its reputation, key facts]
 [2 sentences: what makes this wine unique — terroir, winemaking method, distinctive traits]
 
+Do NOT start card_content with a markdown heading (###) or a flag/origin line — those are passed separately as `name` and `origin` params.
 In the description paragraphs, never mention the wine name, producer name, or appellation — they are already displayed as the card title.
 Keep each paragraph to 1 sentence. The entire description should not exceed 4 sentences total.
 Separate each sentence/paragraph with a blank line.
-Do not mention the wine name/domaine and the region
 
 Characteristics: [5-6 lowercase tags]
 Food Pairings: [6-8 lowercase tags]
@@ -125,15 +125,6 @@ If user wants to add a wine, use this tool.
     @message = @chat.messages.build(message_params.merge(role: "user"))
 
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-
-      @chat.messages.create(role: "assistant", content: response.content)
-      # @chat.generate_title_from_first_message
-      redirect_to chat_path(@chat)
-
-
       ask_llm
       respond_to do |format|
         format.turbo_stream
