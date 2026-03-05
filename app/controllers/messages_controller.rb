@@ -69,7 +69,7 @@ class MessagesController < ApplicationController
     @message.chat = @chat
     @message.role = "user"
     @ruby_llm_chat = RubyLLM.chat
-    @ruby_llm_chat.with_tool(CreateWine.new(current_user, @chat))
+    @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
 
 
     if @message.save

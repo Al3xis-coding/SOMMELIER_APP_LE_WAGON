@@ -1,7 +1,10 @@
-<%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: false, placeholder: "Ask your sommelier...", input_html: { data: { controller: "submit-on-enter", action: "keydown->submit-on-enter#handleKeydown" } } %>
-  <div class="chat-form-actions">
-    <button type="submit" class="nav-pill-btn nav-pill-btn--cta">
+<%= simple_form_for [chat, message], html: { class: "chat-form" } do |f| %>
+  <div class="chat-input-row">
+    <%= f.input :content, label: false, placeholder: "Ask your sommelier...",
+        wrapper_html: { class: "chat-input-wrapper" },
+        input_html: { class: "chat-textarea", rows: 1,
+          data: { controller: "submit-on-enter", action: "keydown->submit-on-enter#handleKeydown" } } %>
+    <button type="submit" class="chat-send-btn">
       <span>Send</span>
     </button>
   </div>

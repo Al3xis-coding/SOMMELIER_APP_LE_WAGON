@@ -1,13 +1,22 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <h1 class="mb-5">Good day Sir. <br>What shall we be pairing ?</h1>
-    <div class="col-12 col-md-8 col-lg-6">
-      <div id="messages">
-        <%= render "messages/messages", messages: @chat.messages %>
-      </div>
-      <div id="new_message_container">
-        <%= render "messages/form", chat: @chat, message: @message %>
-      </div>
+<div class="chat-page">
+  <div class="chat-header">
+    <div class="chat-header-icon">
+      <svg viewBox="0 0 352.35 470.27" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="176.17" cy="298.10" r="172.17" fill="#780000"/>
+        <circle cx="176.17" cy="176.17" r="172.17" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="8"/>
+      </svg>
     </div>
+    <div>
+      <h2 class="chat-header-title">Your Sommelier</h2>
+      <p class="chat-header-subtitle">Good day — what shall we be pairing?</p>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="messages">
+    <%= render "messages/messages", messages: @chat.messages %>
+  </div>
+
+  <div class="chat-input-area" id="new_message_container">
+    <%= render "messages/form", chat: @chat, message: @message %>
   </div>
 </div>
