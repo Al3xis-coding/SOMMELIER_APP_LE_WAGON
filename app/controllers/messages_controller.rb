@@ -69,8 +69,7 @@ class MessagesController < ApplicationController
     @message.chat = @chat
     @message.role = "user"
     @ruby_llm_chat = RubyLLM.chat
-    @ruby_llm_chat.with_tool(CreateWine.new(current_user, @chat))
-
+    @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
 
     if @message.save
       build_conversation_history
@@ -84,7 +83,10 @@ class MessagesController < ApplicationController
 
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message })}
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form",
+                                                                            locals: { chat: @chat, message: @message })
+        end
         format.html { render "chats/show", status: :unprocessable_entity }
       end
     end
