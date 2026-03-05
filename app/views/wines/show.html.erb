@@ -34,10 +34,14 @@
     <div class="wine-show__info">
       <h1 class="wine-show__name"><%= @wine.name %></h1>
       <% if @wine.origin.present? %>
-        <p class="wine-show__origin"><%= @wine.origin %></p>
+        <p class="wine-show__origin"><%= country_flag(@wine.origin) %> <%= @wine.origin %></p>
       <% end %>
 
-      <% if @wine.description.present? %>
+      <% if @wine.card_content.present? %>
+        <div class="wine-show__card-content">
+          <%= raw(render_markdown(card_content_body(@wine.card_content))) %>
+        </div>
+      <% elsif @wine.description.present? %>
         <div class="wine-show__description">
           <p><%= @wine.description %></p>
         </div>
@@ -57,6 +61,11 @@
       <% if @wine.categories.present? %>
         <h2 class="wine-show__section-title">Food Pairings</h2>
         <p class="wine-show__section-text"><%= @wine.categories.map(&:humanize).join(", ") %></p>
+      <% end %>
+
+      <% if @wine.price_range.present? %>
+        <h2 class="wine-show__section-title">Price</h2>
+        <p class="wine-show__section-text"><%= @wine.price_range %></p>
       <% end %>
     </div>
   </div>

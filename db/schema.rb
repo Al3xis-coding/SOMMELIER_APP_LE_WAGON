@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_04_105716) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_152249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_04_105716) do
   end
 
   create_table "wines", force: :cascade do |t|
+    t.text "card_content"
     t.string "categories", default: [], array: true
     t.bigint "chat_id", null: false
     t.string "color"
@@ -83,6 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_04_105716) do
     t.text "description"
     t.string "name"
     t.string "origin"
+    t.string "price_range"
     t.string "taste"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
