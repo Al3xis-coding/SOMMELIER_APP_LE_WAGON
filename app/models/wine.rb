@@ -1,14 +1,10 @@
 class Wine < ApplicationRecord
   CATEGORIES = %w[
-    fish shellfish poultry pork bbq beef lamb game charcuterie
+    fish shellfish poultry pork bbq beef lamb charcuterie
     soft_cheese aged_cheese blue_cheese
     pasta pizza vegetarian spicy_food asian_cuisine
-    dessert chocolate fruit_dessert
+    dessert chocolate fruit
     aperitif celebration romantic everyday summer winter
-    light_body medium_body full_body
-    dry off_dry sweet
-    tannic smooth fruity mineral oaky fresh complex
-    sparkling fortified
   ].freeze
 
   COLORS = %w[red white rose yellow].freeze
