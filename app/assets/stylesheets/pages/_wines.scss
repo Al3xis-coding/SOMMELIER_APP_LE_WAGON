@@ -280,10 +280,10 @@ a.wine-card {
 
   &__bottom {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background: darken($background, 5%);
     min-height: 50vh;
-    padding: 60px 80px;
+    padding: 40px 80px 60px;
   }
 
   // Spacer to reserve room for the bottle on the left
@@ -328,6 +328,36 @@ a.wine-card {
   &__details {
     flex: 1;
     text-align: center;
+  }
+
+  &__card-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba($gray, 0.7);
+      line-height: 1.7;
+      margin: 0 0 0.75rem;
+    }
+
+    strong {
+      font-weight: 700;
+      color: $gray;
+    }
+
+    h1, h2, h3 {
+      font-family: $headers-font;
+      font-weight: 700;
+      color: $gray;
+      margin: 1rem 0 0.25rem;
+    }
+
+    hr {
+      display: none;
+    }
   }
 
   &__section-title {
