@@ -63,57 +63,56 @@ class MessagesController < ApplicationController
     If user wants to add a wine, use this tool
   PROMPT
 
-  # def ask_llm
-  #   @ruby_llm_chat = RubyLLM.chat
-  #   build_conversation_history
-  #   @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
-  #   @ruby_llm_chat.with_instructions(instructions)
-  #   @ruby_llm_chat.ask(@message.content)
-  #
-  #   @ruby_llm_chat.with_instructions(instructions)
-  #
-    # @ruby_llm_chat.ask(@message.content) do |chunk|
-    #   next if chunk.content.blank? # skip empty chunks
-    #
-    #   @assistant_message.content += chunk.content
-    #   broadcast_replace(@assistant_message)
-    # end
-  # end
-
   def create
     @chat = current_user.chats.find(params[:chat_id])
-    @message = Message.new(message_params)
-    @message.chat = @chat
-    @message.role = "user"
-    @ruby_llm_chat = RubyLLM.chat
-    @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
+    @message = @chat.messages.build(message_params.merge(role: "user"))
 
     if @message.save
-      @assistant_message = @chat.messages.create!(role: "assistant", content: "")
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content) do |chunk|
-        next if chunk.content.blank?
-        @assistant_message.content += chunk.content
-        broadcast_replace(@assistant_message)
-      end
-      @assistant_message.update(content: response.content)
+      ask_llm
       respond_to do |format|
-        format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+        format.turbo_stream
         format.html { redirect_to chat_path(@chat) }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message })}
+        format.turbo_stream { render_form_error }
         format.html { render "chats/show", status: :unprocessable_entity }
       end
     end
   end
 
+  private
+
+  def ask_llm
+    @assistant_message = @chat.messages.create!(role: "assistant", content: "")
+    @ruby_llm_chat = RubyLLM.chat
+    @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
+    build_conversation_history
+    response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content) do |chunk|
+      next if chunk.content.blank?
+
+      @assistant_message.content += chunk.content
+      broadcast_replace(@assistant_message)
+    end
+    @assistant_message.update(content: response.content)
+  end
+
+  def render_form_error
+    render turbo_stream: turbo_stream.update(
+      "new_message_container",
+      partial: "messages/form",
+      locals: { chat: @chat, message: @message }
+    )
+  end
 
   def broadcast_replace(message)
-    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: helpers.dom_id(message), partial: "messages/message", locals: { message: message })
+    Turbo::StreamsChannel.broadcast_replace_to(
+      @chat,
+      target: helpers.dom_id(message),
+      partial: "messages/message",
+      locals: { message: message }
+    )
   end
-  private
 
   def message_params
     params.require(:message).permit(:content)
