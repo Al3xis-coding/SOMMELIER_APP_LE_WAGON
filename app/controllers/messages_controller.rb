@@ -72,9 +72,14 @@ class MessagesController < ApplicationController
     @ruby_llm_chat.with_tool(::CreateWine.new(current_user, @chat))
 
     if @message.save
+      @ruby_llm_chat = RubyLLM.chat
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+
       @chat.messages.create(role: "assistant", content: response.content)
+      # @chat.generate_title_from_first_message
+      redirect_to chat_path(@chat)
+
 
       respond_to do |format|
         format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
@@ -91,6 +96,12 @@ class MessagesController < ApplicationController
       end
     end
   end
+
+  # def build_conversation_history
+  #   @chat.messages.each do |message|
+  #     @ruby_llm_chat.add_message(message)
+  #   end
+  # end
 
   private
 
@@ -112,4 +123,5 @@ class MessagesController < ApplicationController
       @ruby_llm_chat.add_message(role: message.role, content: message.content)
     end
   end
+  
 end
