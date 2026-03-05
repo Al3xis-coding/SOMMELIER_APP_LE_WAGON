@@ -13,7 +13,4 @@ class ChatsController < ApplicationController
     @chat = Chat.all(user: current_user)
     @message = Message.all(user: current_user)
   end
-
-
-
 end

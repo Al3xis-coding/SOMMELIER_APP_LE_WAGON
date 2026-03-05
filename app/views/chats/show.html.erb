@@ -1,23 +1,43 @@
-<div class="chat-page">
-  <div class="chat-header">
-    <div class="chat-header-icon">
-      <svg viewBox="0 0 352.35 470.27" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="176.17" cy="298.10" r="172.17" fill="#780000"/>
-        <circle cx="176.17" cy="176.17" r="172.17" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="8"/>
-      </svg>
-    </div>
-    <div>
-      <h2 class="chat-header-title">Your Sommelier</h2>
-      <p class="chat-header-subtitle">Good day — what shall we be pairing?</p>
-    </div>
+<div class="d-flex min-vh-100">
+
+  <!-- Sidebar -->
+  <div class="sidebar-header" style="width: 280px; h-auto;">
+    <aside class="border-end bg-light" style="width: 280px;" id="side-bar">
+    <%= render "shared/sidenav" %>
+  </aside>
+
   </div>
 
-  <div class="chat-messages" id="messages">
-    <%= render "messages/messages", messages: @chat.messages %>
-  </div>
 
-  <div class="chat-input-area" id="new_message_container">
-    <%= render "messages/form", chat: @chat, message: @message %>
+  <!-- Chat Page -->
+  <div class="d-flex flex-column flex-grow-1 chat-page">
+
+    <!-- Header -->
+    <div class="chat-header border-bottom px-3 py-2 d-flex align-items-center">
+      <div class="chat-header-icon me-3">
+        <svg viewBox="0 0 352.35 470.27" xmlns="http://www.w3.org/2000/svg" width="32">
+          <circle cx="176.17" cy="298.10" r="172.17" fill="#780000"/>
+          <circle cx="176.17" cy="176.17" r="172.17" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="8"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="chat-header-title h6 mb-0">Your Sommelier</h2>
+        <p class="chat-header-subtitle text-muted small mb-0">
+          Good day — what shall we be pairing?
+        </p>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="flex-grow-1 overflow-auto p-3 chat-messages" id="messages">
+      <%= render "messages/messages", messages: @chat.messages %>
+    </div>
+
+    <!-- Input -->
+    <div class="border-top p-3 chat-input-area" id="new_message_container">
+      <%= render "messages/form", chat: @chat, message: @message %>
+    </div>
+
   </div>
 
 </div>
