@@ -17,8 +17,19 @@
   text-decoration: none;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 36px;
+.navbar-logo-svg {
+  height: 36px;
+  width: auto;
+  overflow: visible;
+}
+
+.navbar-logo-rim {
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navbar-lewagon .navbar-brand:hover .navbar-logo-rim {
+  transform: translateY(121.93px);
 }
 
 .navbar-brand-name {
