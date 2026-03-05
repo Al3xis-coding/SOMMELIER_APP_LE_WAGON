@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="chat-messages" id="messages">
+  <div class="chat-messages" id="messages" data-controller="autoscroll">
     <%= render "messages/messages", messages: @chat.messages %>
   </div>
 
