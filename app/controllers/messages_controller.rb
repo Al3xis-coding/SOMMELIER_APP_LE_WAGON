@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
     # OUTPUT FORMAT
     Present your recommendations as **wine sheets** in Markdown format, with the following sections for each wine:
 
-    ### [Wine Name] – [Wine Color: Red / White / Rosé / Sparkling]
+    ### [Wine Name] – [Wine Color: Red / White / Rosé / Yellow]
     **Category**: [AOC, IGP, Vin de France, etc.]
     **Origin**: [Region, Country] (e.g., Bordeaux, France)
     **Grape Variety(ies)**: [List of main grapes] (e.g., Merlot, Cabernet Sauvignon)

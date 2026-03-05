@@ -209,6 +209,21 @@ a.wine-card {
   width: 100%;
   overflow: hidden;
 
+  &__delete-wrap {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+
+    .nav-pill-btn--cta {
+      min-width: unset;
+      height: 38px;
+      padding: 0 18px;
+      font-size: 0.85rem;
+      border-width: 2px;
+    }
+  }
+
   // Bottle container - positioned absolutely, centered vertically across both sections
   &__bottle {
     position: absolute;

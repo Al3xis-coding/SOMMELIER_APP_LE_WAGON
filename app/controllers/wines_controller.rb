@@ -2,6 +2,12 @@ class WinesController < ApplicationController
   def show
     @wine = Wine.find(params[:id])
   end
+  def destroy
+    @wine = Wine.find(params[:id])
+    @wine.destroy
+    redirect_to wines_path, status: :see_other
+  end
+
   def index
     @wines = current_user.wines
     @wines = @wines.where(color: params[:color]) if params[:color].present?
