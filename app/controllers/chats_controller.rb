@@ -11,8 +11,9 @@ class ChatsController < ApplicationController
 
   def index
     @chat = Chat.all(user: current_user)
-    @chat = current_user.chat
-
+    @message = Message.all(user: current_user)
   end
+
+
 
 end
