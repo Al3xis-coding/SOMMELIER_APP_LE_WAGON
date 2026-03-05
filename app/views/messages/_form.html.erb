@@ -1,4 +1,8 @@
 <%= simple_form_for [chat, message] do |f| %>
   <%= f.input :content, label: false, placeholder: "Ask your sommelier...", input_html: { data: { controller: "submit-on-enter", action: "keydown->submit-on-enter#handleKeydown" } } %>
-  <%= f.button :submit, "Send", class: "btn btn-primary" %>
+  <div class="chat-form-actions">
+    <button type="submit" class="nav-pill-btn nav-pill-btn--cta">
+      <span>Send</span>
+    </button>
+  </div>
 <% end %>

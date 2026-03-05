@@ -7,6 +7,114 @@
   }
 }
 
+// Filters
+.wines-filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.wines-filter-colors {
+  display: flex;
+  gap: 8px;
+}
+
+.wine-color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  background: white;
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #444;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &.active {
+    border-color: $primary;
+    color: $primary;
+    font-weight: 600;
+  }
+
+  &:hover {
+    border-color: rgba($primary, 0.5);
+    color: $primary;
+  }
+}
+
+.wine-color-chip--all::before  { background: linear-gradient(135deg, #780000 0%, #f4a460 50%, #f5f5dc 100%); }
+.wine-color-chip--red::before  { background: #780000; }
+.wine-color-chip--white::before { background: #f5e6a3; border: 1px solid #ccc; }
+.wine-color-chip--rose::before  { background: #e8929a; }
+.wine-color-chip--yellow::before { background: #d4a843; }
+
+.wines-filter-category {
+  flex: 0 0 auto;
+}
+
+.wines-category-select {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #444;
+  padding: 6px 32px 6px 14px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+
+  &:has(option[value]:not([value=""]):checked) {
+    border-color: $primary;
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+.wines-filter-clear {
+  font-family: $body-font;
+  font-size: 0.78rem;
+  color: rgba(#444, 0.6);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(#444, 0.3);
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: $primary;
+    border-color: $primary;
+  }
+}
+
 .wines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));

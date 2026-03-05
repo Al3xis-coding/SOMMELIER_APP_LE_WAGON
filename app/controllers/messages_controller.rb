@@ -58,6 +58,9 @@ class MessagesController < ApplicationController
     - [List of dishes or flavors that pair well with this wine] (e.g., grilled red meats, aged cheeses, saucy dishes),
     **Price Range**: [Price range in euros/dollars] (e.g., €10-15, €20-30, €50+),
     **Why This Wine?**:[Pedagogical explanation of the food pairing, linking to the dish’s characteristics as described by the user].
+
+    #CREATE WINE TOOL
+    If user wants to add a wine, use this tool
   PROMPT
 
   def create
@@ -66,6 +69,8 @@ class MessagesController < ApplicationController
     @message.chat = @chat
     @message.role = "user"
     @ruby_llm_chat = RubyLLM.chat
+    @ruby_llm_chat.with_tool(CreateWine.new(current_user, @chat))
+
 
     if @message.save
       build_conversation_history
