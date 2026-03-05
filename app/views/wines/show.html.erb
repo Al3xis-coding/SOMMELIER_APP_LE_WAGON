@@ -15,6 +15,12 @@
                    end
   %>
 
+  <div class="wine-show__delete-wrap">
+    <%= button_to wine_path(@wine), method: :delete, class: "nav-pill-btn nav-pill-btn--cta", data: { turbo_confirm: "Delete #{@wine.name}?" } do %>
+      <span>Delete</span>
+    <% end %>
+  </div>
+
   <!-- Bottle spanning both sections -->
   <div class="wine-show__bottle">
     <div class="wine-show__circle-top" style="background-color: <%= circle_color %>;"></div>
