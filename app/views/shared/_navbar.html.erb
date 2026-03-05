@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo.png" %>
+      <span class="navbar-brand-name">gr<span class="navbar-brand-ai">AI</span>pes</span>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,17 +12,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav-pills">
         <% if user_signed_in? %>
-          <%= link_to wines_path, class: "nav-pill-btn" do %>
+          <%= link_to wines_path, class: "nav-pill-btn #{current_page?(wines_path) ? 'active' : ''}" do %>
             <span>Wine List</span>
           <% end %>
-          <%= link_to chats_path, data: { turbo_method: :post }, class: "nav-pill-btn" do %>
+          <%= link_to chats_path, data: { turbo_method: :post }, class: "nav-pill-btn #{controller_name == 'chats' ? 'active' : ''}" do %>
             <span>Sommelier</span>
           <% end %>
-          <%= link_to edit_user_registration_path, class: "nav-pill-btn" do %>
+          <%= link_to edit_user_registration_path, class: "nav-pill-btn #{current_page?(edit_user_registration_path) ? 'active' : ''}" do %>
             <span>Profile</span>
           <% end %>
+          <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-pill-btn nav-pill-btn--logout" do %>
+            <span>Log out</span>
+          <% end %>
         <% else %>
-          <%= link_to new_user_session_path, class: "nav-pill-btn" do %>
+          <%= link_to new_user_session_path, class: "nav-pill-btn #{current_page?(new_user_session_path) ? 'active' : ''}" do %>
             <span>Login</span>
           <% end %>
         <% end %>
