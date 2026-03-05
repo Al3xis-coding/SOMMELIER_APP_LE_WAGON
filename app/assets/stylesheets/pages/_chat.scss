@@ -36,6 +36,12 @@
   }
 }
 
+.chat-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
 #messages {
   display: flex;
   flex-direction: column;
