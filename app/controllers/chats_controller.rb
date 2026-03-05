@@ -8,4 +8,10 @@ class ChatsController < ApplicationController
     @chat = Chat.create!(user: current_user)
     redirect_to chat_path(@chat)
   end
+
+  def index
+    @chat = Chat.all(user: current_user)
+    
+  end
+
 end
