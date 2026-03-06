@@ -1,5 +1,6 @@
 .wines-index {
   padding: 2rem;
+  padding-inline: 4rem;
 
   h1 {
     color: $primary;
@@ -390,6 +391,11 @@ a.wine-card {
 .wine-show--rose {
   .wine-show__top    { background: #fdf0e6; }
   .wine-show__bottom { background: #f8e2d0; }
+}
+
+.wine-show--yellow {
+  .wine-show__top    { background: #fdf8e0; }
+  .wine-show__bottom { background: #f5eecc; }
 }
 
 // Responsive

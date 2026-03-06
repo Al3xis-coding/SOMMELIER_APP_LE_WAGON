@@ -1,12 +1,14 @@
 <div class="chat-page">
-  <div class="chat-header">
-    <div class="chat-header-icon">
-      <%= image_tag "21630-trollface-meme-sir-moustache.png", style: "width:100%;height:100%;object-fit:cover;border-radius:50%" %>
-    </div>
-    <div>
-      <h2 class="chat-header-title">Your Sommelier</h2>
-      <p class="chat-header-subtitle">Good day — what shall we be pairing?</p>
-    </div>
+  <% hero_titles = [
+    "Tell me what's on your plate and let's find out the perfect pour.",
+    "What's the occasion? I'll find the right bottle.",
+    "Most people guess. You, wisely, are asking. What's on the menu?",
+    "A great meal deserves a great wine. Let's find it.",
+    "Tell me about your evening and I'll do the rest.",
+    "Every dish has its match. Let's find yours.",
+  ] %>
+  <div class="chat-hero">
+    <p class="chat-hero-title"><%= hero_titles.sample %></p>
   </div>
 
   <div class="chat-messages" id="messages" data-controller="autoscroll">

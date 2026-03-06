@@ -29,9 +29,10 @@
     <% @wines.each do |wine| %>
       <%
         bottle_image = case wine.color
-                       when "red"   then "bottle-red.png"
-                       when "rose"  then "bottle-pink.png"
-                       when "white" then "bottle-white.png"
+                       when "red"    then "bottle-red.png"
+                       when "rose"   then "bottle-pink.png"
+                       when "white"  then "bottle-white.png"
+                       when "yellow" then "bottle-yellow.png"
                        else "bottle-red.png"
                        end
       %>
