@@ -13,7 +13,10 @@ class Message < ApplicationRecord
     end
   end
 
+  # def broadcast_append_to_chat
+  # broadcast_append_to chat, target: "messages", partial: "messages/message", locals: { message: self }
+  # end
   def broadcast_append_to_chat
-  broadcast_append_to chat, target: "messages", partial: "messages/message", locals: { message: self }
+    broadcast_append_later_to chat, target: "messages", partial: "messages/message", locals: { message: self }
   end
 end
