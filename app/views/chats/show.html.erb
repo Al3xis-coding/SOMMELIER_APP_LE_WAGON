@@ -3,6 +3,18 @@
   <!-- Sidebar -->
   <div class="sidebar-header" style="width: 280px; h-auto;">
     <aside class="border-end bg-light" style="width: 280px;" id="side-bar">
+    <h1 class="chat-header-title h6 m-3" >Conversations</h1>
+    <div>
+    <% if @chats.any? %>
+      <ul>
+        <% @chats.each do |chat| %>
+          <li><%= link_to chat.title, chat_path(chat) %></li>
+          <% end %>
+      </ul>
+        <% else %>
+        There are no chats yet.
+        <% end %>
+    </div>
     <%= render "shared/sidenav" %>
   </aside>
 
