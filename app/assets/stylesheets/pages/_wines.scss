@@ -72,6 +72,105 @@
   flex: 0 0 auto;
 }
 
+.wines-filter-price {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  background: white;
+  transition: border-color 0.2s;
+
+  &.price-slider--active {
+    border-color: $primary;
+
+    .price-slider__label-title {
+      color: $primary;
+      font-weight: 600;
+    }
+  }
+}
+
+.price-slider__label-title {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.price-slider__values {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $primary;
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+.price-slider__track-wrap {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 120px;
+
+  input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    pointer-events: none;
+    z-index: 2;
+
+    &::-webkit-slider-thumb {
+      pointer-events: all;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid $primary;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &::-moz-range-thumb {
+      pointer-events: all;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid $primary;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.price-slider__track {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.price-slider__range {
+  position: absolute;
+  height: 100%;
+  background: $primary;
+  border-radius: 2px;
+}
+
 .wines-category-select {
   font-family: $body-font;
   font-size: 0.8rem;

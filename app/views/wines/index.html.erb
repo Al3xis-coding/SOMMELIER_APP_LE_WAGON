@@ -14,13 +14,38 @@
     <div class="wines-filter-category">
       <select name="category" onchange="this.form.submit()" class="wines-category-select">
         <option value="" <%= "selected" if params[:category].blank? %>>All categories</option>
-        <% Wine::CATEGORIES.each do |cat| %>
+        <% @available_categories.each do |cat| %>
           <option value="<%= cat %>" <%= "selected" if params[:category] == cat %>><%= cat.gsub('_', ' ').capitalize %></option>
         <% end %>
       </select>
     </div>
 
-    <% if params[:color].present? || params[:category].present? %>
+    <div class="wines-filter-price"
+         data-controller="price-range-slider"
+         data-price-range-slider-bound-min-value="<%= @price_min %>"
+         data-price-range-slider-bound-max-value="<%= @price_max %>">
+      <span class="price-slider__label-title">Price</span>
+      <div class="price-slider__track-wrap">
+        <div class="price-slider__track">
+          <div class="price-slider__range" data-price-range-slider-target="range"></div>
+        </div>
+        <input type="range" name="min_price"
+               min="<%= @price_min %>" max="<%= @price_max %>" step="5"
+               value="<%= params[:min_price] || @price_min %>"
+               data-price-range-slider-target="minInput"
+               data-action="input->price-range-slider#minChanged change->price-range-slider#submit">
+        <input type="range" name="max_price"
+               min="<%= @price_min %>" max="<%= @price_max %>" step="5"
+               value="<%= params[:max_price] || @price_max %>"
+               data-price-range-slider-target="maxInput"
+               data-action="input->price-range-slider#maxChanged change->price-range-slider#submit">
+      </div>
+      <span class="price-slider__values">
+        <span data-price-range-slider-target="minVal"></span><span data-price-range-slider-target="maxVal"></span>
+      </span>
+    </div>
+
+    <% if params[:color].present? || params[:category].present? || params[:min_price].present? || params[:max_price].present? %>
       <%= link_to "Clear filters", wines_path, class: "wines-filter-clear" %>
     <% end %>
   <% end %>
