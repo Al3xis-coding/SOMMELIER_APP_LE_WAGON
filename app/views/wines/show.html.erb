@@ -1,16 +1,18 @@
 <div class="wine-show wine-show--<%= @wine.color || 'red' %>">
   <%
     bottle_image = case @wine.color
-                   when "red" then "bottle-red.png"
-                   when "rose" then "bottle-pink.png"
-                   when "white" then "bottle-white.png"
+                   when "red"    then "bottle-red.png"
+                   when "rose"   then "bottle-pink.png"
+                   when "white"  then "bottle-white.png"
+                   when "yellow" then "bottle-yellow.png"
                    else "bottle-red.png"
                    end
 
     circle_color = case @wine.color
-                   when "red" then "#E8A0A0"
-                   when "rose" then "#F4A7B9"
-                   when "white" then "#F5E6A3"
+                   when "red"    then "#E8A0A0"
+                   when "rose"   then "#F4A7B9"
+                   when "white"  then "#F5E6A3"
+                   when "yellow" then "#EDD56A"
                    else "#E8A0A0"
                    end
   %>
