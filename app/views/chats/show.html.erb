@@ -1,30 +1,35 @@
-<div class="d-flex min-vh-100">
+<%= turbo_stream_from @chat %>
 
+<div class="d-flex min-vh-100">
   <!-- Sidebar -->
   <div class="sidebar-header" style="width: 280px; h-auto;">
     <aside class="border-end bg-light" style="width: 280px;" id="side-bar">
-    <h1 class="chat-header-title h6 m-3" >Conversations</h1>
-    <div>
-    <% if @chats.any? %>
-      <ul>
-        <% @chats.each do |chat| %>
-          <li><%= link_to chat.title, chat_path(chat) %></li>
+      <h1 class="chat-header-title h6 m-3" >Conversations</h1>
+      <div>
+      <% if @chats.any? %>
+        <ul>
+          <% @chats.each do |chat| %>
+            <li><%= link_to chat.title, chat_path(chat) %></li>
+            <% end %>
+        </ul>
+          <% else %>
+          There are no chats yet.
           <% end %>
-      </ul>
-        <% else %>
-        There are no chats yet.
-        <% end %>
-    </div>
-    <%# <%= render "shared/sidenav" %>
-  </aside>
-
+      </div>
+      <%# <%= render "shared/sidenav" %>
+    </aside>
   </div>
 
-
-  <!-- Chat Page -->
   <div class="d-flex flex-column flex-grow-1 chat-page">
+    <% hero_titles = [
+      "Tell me what's on your plate and let's find out the perfect pour.",
+      "What's the occasion? I'll find the right bottle.",
+      "Most people guess. You, wisely, are asking. What's on the menu?",
+      "A great meal deserves a great wine. Let's find it.",
+      "Tell me about your evening and I'll do the rest.",
+      "Every dish has its match. Let's find yours.",
+    ] %>
 
-    <!-- Header -->
     <div class="chat-header border-bottom px-3 py-2 d-flex align-items-center">
       <div class="chat-header-icon me-3">
         <svg viewBox="0 0 352.35 470.27" xmlns="http://www.w3.org/2000/svg" width="32">
@@ -49,7 +54,5 @@
     <div class="border-top p-3 chat-input-area" id="new_message_container">
       <%= render "messages/form", chat: @chat, message: @message %>
     </div>
-
   </div>
-
 </div>

@@ -1,5 +1,6 @@
 .wines-index {
   padding: 2rem;
+  padding-inline: 4rem;
 
   h1 {
     color: $primary;
@@ -69,6 +70,105 @@
 
 .wines-filter-category {
   flex: 0 0 auto;
+}
+
+.wines-filter-price {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  background: white;
+  transition: border-color 0.2s;
+
+  &.price-slider--active {
+    border-color: $primary;
+
+    .price-slider__label-title {
+      color: $primary;
+      font-weight: 600;
+    }
+  }
+}
+
+.price-slider__label-title {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.price-slider__values {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $primary;
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+.price-slider__track-wrap {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 120px;
+
+  input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    pointer-events: none;
+    z-index: 2;
+
+    &::-webkit-slider-thumb {
+      pointer-events: all;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid $primary;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &::-moz-range-thumb {
+      pointer-events: all;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid $primary;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.price-slider__track {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.price-slider__range {
+  position: absolute;
+  height: 100%;
+  background: $primary;
+  border-radius: 2px;
 }
 
 .wines-category-select {
@@ -280,10 +380,10 @@ a.wine-card {
 
   &__bottom {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background: darken($background, 5%);
     min-height: 50vh;
-    padding: 60px 80px;
+    padding: 40px 80px 60px;
   }
 
   // Spacer to reserve room for the bottle on the left
@@ -330,6 +430,36 @@ a.wine-card {
     text-align: center;
   }
 
+  &__card-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba($gray, 0.7);
+      line-height: 1.7;
+      margin: 0 0 0.75rem;
+    }
+
+    strong {
+      font-weight: 700;
+      color: $gray;
+    }
+
+    h1, h2, h3 {
+      font-family: $headers-font;
+      font-weight: 700;
+      color: $gray;
+      margin: 1rem 0 0.25rem;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
   &__section-title {
     font-family: $headers-font;
     font-size: 2.4rem;
@@ -360,6 +490,11 @@ a.wine-card {
 .wine-show--rose {
   .wine-show__top    { background: #fdf0e6; }
   .wine-show__bottom { background: #f8e2d0; }
+}
+
+.wine-show--yellow {
+  .wine-show__top    { background: #fdf8e0; }
+  .wine-show__bottom { background: #f5eecc; }
 }
 
 // Responsive
