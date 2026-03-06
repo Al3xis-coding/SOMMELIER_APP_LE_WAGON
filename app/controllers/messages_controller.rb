@@ -75,6 +75,7 @@ class MessagesController < ApplicationController
       @ruby_llm_chat = RubyLLM.chat
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      @chat.generate_title_from_first_message
 
       @chat.messages.create(role: "assistant", content: response.content)
       # @chat.generate_title_from_first_message
@@ -123,5 +124,5 @@ class MessagesController < ApplicationController
       @ruby_llm_chat.add_message(role: message.role, content: message.content)
     end
   end
-  
+
 end

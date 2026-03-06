@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   private
 
   def set_chats
-    @chats = current_user.chats.all.order(created_at: :desc)
+    if current_user
+      @chats = current_user.chats.all.order(created_at: :desc)
+    end
   end
 end
